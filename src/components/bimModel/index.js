@@ -19,7 +19,7 @@ import AttrDetail from '@/components/attrDetail';
 let updateIOTDataInterval = null;
 
 const index = props => {
-  const [showAttr, setShowAttr] = useState(true);
+  const [showAttr, setShowAttr] = useState(false);
 
   const [iotData, setIotData] = useState([]);
   const [activeGroupedTagAttributes, setActiveGroupedTagAttributes] = useState(
