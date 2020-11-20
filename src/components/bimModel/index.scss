@@ -1,0 +1,25 @@
+.attr-wrapper {
+    position: fixed;
+    top: 100px;
+    left: 20px;
+    padding: 20px;
+    width: 400px;
+    border: 1px solid #5a88d2;
+    background: rgba(255,255,255,.1);
+    .ant-table{
+        background:  rgba(45, 51, 67, 0.7);
+        td{
+            color: #fff;
+        }
+        tr:hover,td:hover{
+            background: none;
+            color: rgb(24, 25, 26);
+            td{
+                color: rgb(24, 25, 26);
+            }
+        }
+      }
+}
+.bos3dui-bottom{
+    display: none;
+}

@@ -1,28 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col } from 'antd';
 import { connect } from 'umi';
-import BimModel from "@/components/bimModel"
-import SpaceUsage from "@/components/SpaceUsage"
-import './index.scss'
+import BimModel from '@/components/bimModel';
+import SpaceUsage from '@/components/SpaceUsage';
+import './index.scss';
 
-const index = (props) => {
-
-
+const index = props => {
   useEffect(() => {
-    props.getAllModelData()
-      .then( res => {
-
-      })
+    props.getAllModelData().then(res => {});
   }, []);
 
   return (
     <div className="page-wrap">
       <BimModel />
-      <div className="left-section">
+      {/* <div className="left-section">
         <SpaceUsage />
-      </div>
-      
-      
+      </div> */}
     </div>
   );
 };
@@ -30,14 +23,12 @@ const index = (props) => {
 const mapStateToProps = ({ loading, project, attributes, login }) => ({
   loading,
   allModelData: project.allModelData,
-
 });
 
 const mapDispatchToProps = dispatch => ({
-  
   getAllModelData() {
     return dispatch({
-      type: 'project/getAllModelData'
+      type: 'project/getAllModelData',
     });
   },
 });

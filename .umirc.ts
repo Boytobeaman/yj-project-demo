@@ -39,13 +39,12 @@ export default defineConfig({
   },
   cssModulesTypescriptLoader: {},
   define: {
-    USERNAME: "18516577050",
-    PASSWORD: "LXCbim168168",
-    BUILDING_KEY: "d4da34d82e9c44838a594a7a43dc1c4a",
-    
-    BASE_URL: "http://building-bos.rickricks.com",
-    BASE_3D_URL: "http://building-bos3d.rickricks.com",
-    BOS3D_DATABASE_KEY: "k542c7943fec4a27ac68531d42ab5972"
-  }
-  
+    USERNAME: '18516577050',
+    PASSWORD: 'LXCbim168',
+    BUILDING_KEY: 'b8481275299b4fd4a3469347e55c704c',
+
+    BASE_URL: 'http://building-bos-alpha.rickricks.com',
+    BASE_3D_URL: 'http://building-bos3d-alpha.rickricks.com',
+    BOS3D_DATABASE_KEY: 'o5fabba65a3c40c4bfeaaa1fabd443f7',
+  },
 });

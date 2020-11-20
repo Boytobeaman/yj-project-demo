@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Button } from 'antd';
-import './index.scss'
+import './index.scss';
 
 const PageHeader = () => {
-
-
   return (
     <div className="page-header">
-      <div className="header-title">
-      某智慧园区
-      </div>
+      <div className="header-title">配电柜数字孪生</div>
     </div>
   );
 };
