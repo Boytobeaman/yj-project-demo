@@ -1,0 +1,83 @@
+// Variables
+//
+
+//
+// Color system
+//
+
+$white: #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black: #000 !default;
+
+$blue: #007bff !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: #dc3545 !default;
+$orange: #fd7e14 !default;
+$yellow: #ffc107 !default;
+$green: #28a745 !default;
+$teal: #20c997 !default;
+$cyan: #17a2b8 !default;
+
+$error-color: #FF5050 !default;
+
+// theme color
+$main-theme-color: #49B0FF;
+
+// Body
+//
+// Settings for the `<body>` element.
+$nav-bg: #232730;
+$body-bg: #363B46;
+
+
+// Fonts
+//
+// $font-family-sans-serif:      Arial, Helvetica, sans-serif;
+$font-family-sans-serif: SourceHanSansCN-Normal,
+SourceHanSansCN !default;
+$font-family-serif: Georgia,
+serif;
+
+$font-family-base: $font-family-sans-serif !default;
+$font-color-base: #6E7986 !default;
+$font-color-header: #3D454E !default;
+$font-size-base: 14px !default;
+$font-size-small: 12px !default;
+
+$font-size-base-1366:         12px !default;
+
+$font-weight-light:           200 !default;
+$font-weight-normal:          400 !default;
+$font-weight-bold:            700 !default;
+
+$font-weight-base: $font-weight-normal !default;
+
+$headerHeight: 50px; //header height
+$headerHeight1366: 40px; //header height
+$contentPadding: 1.25%; // 用来描述具体模块右侧的padding
+$contentRightWidth: 84.3%; //用来描述业务模块右侧宽度
+$contentLeftWidth: 15.7%; //用来描述业务模块左侧宽度
+$footerHeight: 10.56vh; // footer height
+
+
+$form-element-height-1366: 24px;
+$form-element-font-size-1366: 12px;
+
+
+
+// page structure
+$page-right-content-padding: 20px;
+$page-right-content-padding-1366: 18px;
+
+
+$footerHeight1366: 80px; // footer height

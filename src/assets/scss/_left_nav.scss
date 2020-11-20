@@ -1,0 +1,288 @@
+@import "variables";
+
+.navBox {
+  width: 100%;
+  /*background-color: white;*/
+  /*padding: 0.72vh;*/
+  position: relative;
+  overflow: hidden;
+  //color: "white",
+  background: #42485B;
+  //width: "100%"
+  color: white;
+  height: calc(100vh - #{$headerHeight});
+
+  > ul {
+    //height: "calc(100% - 35px)", overflowY: "auto"
+    height: calc(100% - 9.4%);
+    overflow: auto;
+  }
+
+  .navBox_header {
+    height: 9.4%;
+    font-family: $font-family-base;
+    font-size: 18px;
+    color: #F7F7F7;
+    width: 100%;
+    text-align: center;
+    //background: #232F3F;
+    line-height: 9.4%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    position: relative;
+    padding: 0 40px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #323842;
+    @media screen and (max-width: 1599px){
+      font-size: 13px;
+      padding: 0 33px;
+    }
+
+    > div {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      line-height: 200%;
+    }
+
+    img {
+
+      //position: "absolute",
+      //right: "10px",
+      //top: "50%",
+      //cursor: "pointer",
+      //transform: "translate(0, -50%)"
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      cursor: pointer;
+      transform: translate(0, -50%);
+
+      @media screen and (max-width: 1599px){
+        width:11px;
+        height: 12px;
+      }
+    }
+  }
+}
+
+.navBox a {
+  font-family: $font-family-base;
+  position: relative;
+  width: 100%;
+  display: block;
+  height: 6.336vh;
+  line-height: 6.336vh;
+  text-align: left;
+  text-decoration: none;
+  font-size: 16px;
+  color: #E1DDDD;
+  background: #222730;
+  display: flex;
+  align-items: center;
+  @media screen and (max-width: 1599px){
+    font-size: 13px;
+  }
+  .leftMark {
+    width: 0;
+    height: 100%;
+    position: absolute;
+    display: none;
+    left: 0;
+    top: 0;
+    border: 8px solid white;
+    border-right: 0 solid transparent;
+    border-left: 8px solid #49B0FF;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    z-index: 1;
+    @media screen and (max-width: 1599px){
+      border: 5px solid transparent;
+      border-left: 5px solid #49B0FF;
+    }
+  }
+
+  .leftMarkUp {
+    width: 8px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+    transform: translateY(-50%);
+    z-index: 1;
+    @media screen and (max-width: 1599px){
+      width: 5px;
+    }
+  }
+
+  img {
+    margin: 0 3.992% 0 28.34%;
+    width: 17px;
+    height: 16px;
+    @media screen and (max-width: 1599px){
+      width: 12px;
+      height: 11px;
+    }
+    &.iot-dynamic{
+      margin-left: 5px;
+      width: 25px;
+      height: 25px;
+      margin-top: -15px;
+    }
+  }
+}
+
+//.navBox_title {
+//  font-family: MicrosoftYaHei;
+//  font-size: 16px;
+//  color: #FFFFFF;
+//  width: 100%;
+//  height: 100%;
+//  text-align: center;
+//  background: #232F3F;
+//  box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.16);
+//  line-height: 100%;
+//  overflow: hidden;
+//  white-space: nowrap;
+//  text-overflow: ellipsis;
+//  position: relative;
+//  padding: 0 30px;
+//  cursor: pointer;
+//}
+
+.nav_sub_title {
+  width: 100%;
+  height: 7.5vh;
+  line-height: 7.5vh;
+  //font-family: MicrosoftYaHei-Bold;
+  font-size: 16px;
+  color: #FFFFFF;
+  background: #42485B;
+  cursor: pointer;
+  position: relative;
+  border-bottom: 1px solid #6A6A6A;
+  @media screen and (max-width: 1599px){
+    font-size: 13px;
+  }
+}
+
+.nav_sub_title1 {
+  background: #222730;
+  border: none;
+}
+
+.nav_sub_title img:nth-child(1) {
+  margin: 0 5.19% 0 15.97%;
+
+  @media screen and (max-width: 1599px){
+    width: 14px;
+    height: 13px;
+  }
+}
+
+.nav_sub_title img:nth-child(3) {
+  position: absolute;
+  top: 50%;
+  right: 9.185%;
+  transform: translateY(-50%);
+  @media screen and (max-width: 1599px){
+    font-size: 12px;
+  }
+}
+
+.navBox .ant-menu-submenu .ant-menu-submenu-title {
+  /*background: #FFFFFF;*/
+  border: 1px solid #B6D8EC;
+  font-family: $font-family-base;
+  font-size: 14px;
+  color: #3BA4DA;
+  height: 4.748vh;
+  line-height: 4.748vh;
+}
+
+.navBox .ant-menu-submenu .ant-menu-item {
+  height: 3.716vh;
+  line-height: 3.716vh;
+}
+
+.navBox .ant-menu-submenu .ant-menu-item a {
+  font-family: $font-family-base;
+  font-size: 14px;
+  color: #999999;
+}
+
+.navBox .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background: #73BDE3;
+}
+
+.navBox .ant-menu-submenu .ant-menu-item-selected > a {
+  color: white;
+}
+
+.navMark .navBox_mark {
+  width: 0;
+  height: 64px;
+  position: absolute;
+  /* background-color: red; */
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  /* border-top-right-radius: 50px; */
+  border: 32px solid white;
+  border-right: 0px solid #f8f8f8;
+  border-left: 12px solid #232F3F;
+  border-top: 10px solid #f8f8f8;
+  border-bottom: 10px solid #f8f8f8;
+  z-index: 1;
+}
+
+.navMark .navBox_mark_up {
+  width: 12px;
+  height: 64px;
+  position: absolute;
+  /* background-color: red; */
+  left: 100%;
+  top: 50%;
+  cursor: pointer;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.navMark .navBox_mark i {
+  color: #3BA4DA;
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  /* width: 5.5px; */
+  /* height: 9px; */
+  font-size: 9px;
+  font-weight: bold;
+}
+
+.navBox .focusNav {
+  font-family: $font-family-base;
+  font-size: 16px;
+  color: #49B0FF;
+  background: #000000;
+  @media screen and (max-width: 1599px){
+    font-size: 13px;
+  }
+  .leftMark {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 1900px) {
+  .nav_sub_title img:nth-child(1) {
+    margin: 0 5.19% 0 9.97%;
+  }
+  .navBox a img {
+    margin: 0 3.992% 0 21.34%;
+  }
+}

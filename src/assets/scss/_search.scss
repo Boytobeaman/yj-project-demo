@@ -1,0 +1,30 @@
+
+.ant-input-search.ant-input-affix-wrapper{
+  &.ant-input-affix-wrapper-input-with-clear-btn{
+    .ant-input:not(:last-child){
+      padding-left: 50px;
+    }
+  }
+  .ant-input:not(:last-child) {
+    padding-left: 30px;
+    padding-right: 12px;
+  }
+  .ant-input-suffix {
+    left: 12px;
+    right: unset;
+  }
+  &:hover,&:focus{
+    .ant-input:not(.ant-input-disabled){
+      & +.ant-input-suffix{
+        color: $main-theme-color;
+        .ant-input-search-icon{
+          color: $main-theme-color;
+        }
+      }
+    }
+  }
+} 
+
+@media screen and (max-width: 1599px){
+
+}

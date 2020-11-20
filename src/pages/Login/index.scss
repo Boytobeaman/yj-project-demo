@@ -1,0 +1,27 @@
+.login-page-wrap{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-image: url("/images/login_bg_2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  form{
+    max-width: 400px;
+    min-width: 300px;
+    margin: 0px auto;
+    right: 50px;
+    background: rgba(43, 43, 42 , 0.8);
+    padding: 10px 20px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 5px;
+
+    .ant-form-item-label > label{
+      color: #fff;
+    }
+  }
+}

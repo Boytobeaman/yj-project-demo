@@ -1,0 +1,156 @@
+$tableHeaderColor: #3D454E; // 表头文字颜色
+$tableBodyColor: #66727F; //表体文字颜色
+$tableHeaderBgColor: #ECF2FA; // 表头背景色
+$tableBodyBgColor: #fff; // 表体背景色
+$tableLineSelectedColor: #49B0FF; // 表格选中的颜色
+
+//表头-鼠标拖动改变列宽的分割线样式
+.react-resizable {
+    position: relative;
+    background-clip: padding-box;
+}
+
+.react-resizable-handle {
+    position: absolute;
+    width: 10px;
+    height: 100%;
+    bottom: 0;
+    right: -5px;
+    cursor: col-resize;
+    z-index: 1;
+}
+
+.react-resizable-handle:hover {
+    background-color: #95969A;
+}
+
+.react-resizable-handle:active {
+    background-color: #95969A;
+}
+
+// 表格复选框按钮
+.ant-checkbox-inner {
+    border-radius: 6px;
+}
+
+.ant-table-thead {
+
+    tr {
+
+        th {
+            background-color: $tableHeaderBgColor !important; // 表头背景色
+            color: $tableHeaderColor;
+            font-weight: normal;
+            padding: 0 8px !important;
+            //height: 40px;
+        }
+    }
+}
+
+.ant-table-body, .ant-table-body-inner {
+
+    table {
+        background: #FCFEFF;
+
+        .ant-table-tbody {
+
+            tr {
+
+                td {
+                    background-color: $tableBodyBgColor; // 表体背景色
+                    color: $tableBodyColor;
+                    //padding: 0 16px;
+                }
+
+            }
+
+
+            //行hover效果
+            tr:hover td {
+                background-color: $tableHeaderBgColor;
+            }
+
+            tr.ant-table-row-selected:hover td {
+                background-color: $tableBodyBgColor;
+            }
+
+
+            //行选中的显示效果
+            tr.ant-table-row-selected td {
+                color: $tableLineSelectedColor;
+            }
+
+        }
+
+    }
+
+}
+
+
+// 表格在固定列，展开行等时候，保持td的背景色始终是表头的背景色
+.ant-table-tbody > tr.ant-table-row-hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td, .ant-table-tbody > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td, .ant-table-thead > tr.ant-table-row-hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td, .ant-table-thead > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td {
+    background-color: $tableHeaderBgColor !important;
+}
+
+.ant-table-small {
+    border: 0 !important;
+}
+
+//.ant-table > .ant-table-content .ant-table-body {
+//    margin-top: 7px;
+//}
+
+@media screen and (min-width: 1920px) {
+    // 1920以上分辨率的屏幕，表格表头的高度是40px,行高是55px
+    .ant-table-thead {
+        tr {
+            th {
+                height: 40px;
+            }
+        }
+    }
+
+    .ant-table-tbody {
+        tr {
+            td {
+                //height: 55px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1441px) and (max-width: 1919px) {
+    .ant-table-thead {
+        tr {
+            th {
+                height: 40px;
+            }
+        }
+    }
+
+    .ant-table-tbody {
+        tr {
+            td {
+                //height: 45px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1440px) {
+    .ant-table-thead {
+        tr {
+            th {
+                height: 40px;
+            }
+        }
+    }
+
+    .ant-table-tbody {
+        tr {
+            td {
+                //height: 40px;
+            }
+        }
+    }
+}

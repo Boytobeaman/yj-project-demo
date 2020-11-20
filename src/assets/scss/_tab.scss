@@ -1,0 +1,38 @@
+$tabFontColorBlue: #49B0FF;
+$tabHeaderBg: #F8FAFF;
+$tabFontColorGrey: #8492A6;
+$tabBorderColor: #D3DCE6;
+
+
+// card类型的Tab
+.ant-tabs.ant-tabs-card .ant-tabs-card-bar {
+  background-color: $tabHeaderBg !important;
+  font-family: $font-family-sans-serif !important;
+}
+
+// 选中tab的样式
+.ant-tabs.ant-tabs-card .ant-tabs-card-bar .ant-tabs-tab-active {
+  color: $tabFontColorBlue !important;
+  background-color: $white !important;
+  box-shadow: 0 0 7px 0 rgba(129, 189, 249, .7);
+  border-top: 1px solid $tabBorderColor !important;
+  border-left: 1px solid $tabBorderColor !important;
+  border-right: 1px solid $tabBorderColor !important;
+  border-radius: 4px 4px 0 0 !important;
+}
+
+//未选中tab的样式
+.ant-tabs.ant-tabs-card .ant-tabs-card-bar .ant-tabs-tab {
+  background-color: $tabHeaderBg;
+  border-radius: unset;
+  color: $tabFontColorGrey;
+  box-sizing: border-box;
+  border-top: 1px solid $tabHeaderBg;
+  border-left: 1px solid $tabHeaderBg;
+  border-right: 1px solid $tabHeaderBg;
+  border-bottom: none !important;
+}
+
+.ant-tabs.ant-tabs-card .ant-tabs-card-bar .ant-tabs-tab:hover {
+  color: $tabFontColorBlue;
+}

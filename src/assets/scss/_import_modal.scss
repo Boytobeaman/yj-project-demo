@@ -1,0 +1,54 @@
+.ant-modal{
+  &.import-modal{
+    .import-modal-wrap{
+      margin-bottom: 30px;
+      .ant-btn{
+        display: inline-block;
+      }
+      .file-name-label,.file-sheet-label{
+        padding-top: 10px;
+        @media screen and (max-width: 1599px){
+          padding-top: 0;
+        }
+      }
+      .file-name-input{
+        display: inline-block;
+        width: 100%;
+      }
+      .file-sheet-select{
+        display: inline-block;
+        width: 100%;
+      }
+      .import-table-wrap{
+        margin-bottom: 30px;
+      }
+      .import-progress-wrap{
+        width: 100%;
+        background-color: #D6DEE7;
+        height: 12px;
+        display: inline-block;
+        .import-progress-bar{
+          background-color: $main-theme-color;
+          height: 12px;
+        }
+      }
+      .reminder-text{
+        color: $error-color;
+        font-size: $font-size-small;
+        margin-top: 5px;
+      }
+      .check-import-result{
+        color: $error-color;
+        font-size: $font-size-small;
+        text-align: right;
+      }
+      .import-action-btn-wrap{
+        margin-bottom: 30px;
+        .confirm-btn-wrap{
+          text-align: right;
+          margin: 10px 0px;
+        }
+      }
+    }
+  }
+}

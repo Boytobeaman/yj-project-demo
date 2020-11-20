@@ -1,0 +1,175 @@
+@import "variables";
+$input-color: #6E7986 !default;
+// $input-bg
+$input-height: 36px !default;
+$input-border-width: 1px !default;
+$input-border-color: #DFDFDF !default;
+$input-border-radius: 5px !default;
+
+input.ant-input {
+  width: 100%;
+  height: $input-height;
+  // padding: $input-padding-y $input-padding-x;
+  font-size: $font-size-base;
+  // line-height: $input-line-height;
+  color: $input-color;
+  // background-color: $input-bg;
+  background-clip: padding-box;
+  border: $input-border-width solid $input-border-color;
+  border-radius: $input-border-radius;
+  @media screen and (max-width: 1599px){
+    height: $form-element-height-1366;
+  }
+  &:focus,
+  &:hover {
+    box-shadow: none;
+    border-color: $main-theme-color;
+  }
+
+  &.ant-input-lg {
+    height: 40px;
+  }
+}
+
+.form-side-icon {
+  padding-top: 10px;
+}
+
+
+.ant-radio{
+  &.ant-radio-checked {
+    &::after {
+      border-color: $main-theme-color;
+    }
+    .ant-radio-inner {
+      border-color: $main-theme-color;
+  
+      &::after {
+        background-color: $main-theme-color;
+      }
+    }
+  }
+  
+  .ant-radio-inner {
+    &::after {
+      display: initial;
+    }
+  }
+}
+
+
+.ant-select {
+  .ant-select-selection {
+    border: 1px solid $input-border-color;
+    border-top: 1.02px solid $input-border-color;
+    height: 36px;
+    @media screen and (max-width: 1599px){
+      height: $form-element-height-1366;
+      .ant-select-selection__rendered{
+        line-height: $form-element-height-1366 - 2px;
+        .ant-select-selection-selected-value{
+          font-size: $form-element-font-size-1366;
+        }
+      }
+    }
+    &:focus,
+    &:active {
+      border-color: $main-theme-color;
+      -webkit-box-shadow: 0 0 0 2px lighten($main-theme-color, 45%);
+      box-shadow: 0 0 0 2px lighten($main-theme-color, 45%);
+    }
+
+    &:hover {
+      border-color: $main-theme-color;
+    }
+  }
+}
+.ant-select-dropdown{
+  .ant-select-dropdown-menu{
+    .ant-select-dropdown-menu-item{
+      @media screen and (max-width: 1599px){
+        font-size: $form-element-font-size-1366;
+      }
+    }
+  }
+}
+
+.ant-form-item-control-wrapper {
+  .ant-form-item-control {
+    line-height: 32px;
+  }
+}
+
+
+button.ant-switch-checked {
+  background-color: $main-theme-color;
+}
+
+.ant-input-suffix {
+  .anticon {
+    &.anticon-question-circle {
+      color: $error-color;
+    }
+  }
+}
+
+.section-content-panel{
+	.btn-wrap{
+		.ant-input{
+      height: 40px;
+      @media screen and (max-width: 1599px){
+        height: $form-element-height-1366;
+      }
+    }
+	}
+}
+.associatedDataLayout{
+  .ant-input{
+    height: 40px;
+    @media screen and (max-width: 1599px){
+      height: $form-element-height-1366;
+    }
+  }
+}
+
+@media screen and (max-width: 1599px){
+  input.ant-input{
+    height: $form-element-height-1366;
+    font-size: $form-element-font-size-1366;
+  }
+  .ant-input-search{
+    height: $form-element-height-1366;
+    .anticon{
+      font-size: $form-element-font-size-1366;
+    }
+  }
+}
+
+.ant-calendar-picker{
+  .ant-calendar-picker-input.ant-input{
+    height: 40px;
+    @media screen and (max-width: 1599px){
+      height: $form-element-height-1366;
+      line-height: $form-element-height-1366;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+}
+.ant-modal{
+  .ant-calendar-picker{
+    .ant-calendar-picker-input.ant-input{
+      height: 36px;
+      @media screen and (max-width: 1599px){
+        height: $form-element-height-1366;
+        line-height: $form-element-height-1366;
+      }
+    }
+  }
+}
+.ant-form label {
+  font-size: 14px;
+  @media screen and (max-width: 1599px){
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "umi dev",
+    "build": "umi build",
+    "build-pro": "cross-env UMI_ENV=pro COMPRESS=true umi build",
+    "postinstall": "umi generate tmp",
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.29",
+    "@fortawesome/free-regular-svg-icons": "^5.14.0",
+    "@fortawesome/free-solid-svg-icons": "^5.13.1",
+    "@fortawesome/react-fontawesome": "^0.1.11",
+    "@umijs/plugin-sass": "^1.1.1",
+    "@umijs/preset-react": "1.x",
+    "@umijs/test": "^3.1.4",
+    "axios": "^0.19.2",
+    "cross-env": "^7.0.2",
+    "echarts": "^4.9.0",
+    "gojs": "^2.1.22",
+    "gojs-react": "^1.0.8",
+    "lint-staged": "^10.0.7",
+    "lodash": "^4.17.15",
+    "node-sass": "^4.14.1",
+    "prettier": "^1.19.1",
+    "province-city-china": "^6.0.3",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "umi": "^3.1.4",
+    "yarn": "^1.22.5",
+    "yorkie": "^2.0.0"
+  }
+}

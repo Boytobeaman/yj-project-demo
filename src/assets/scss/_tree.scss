@@ -1,0 +1,110 @@
+.ant-tree{
+  li {
+    .ant-tree-node-content-wrapper{
+      padding: 0 0;
+      &:hover{
+        color: $main-theme-color;
+        background-color: unset;
+      }
+      &.ant-tree-node-selected {
+        color: $main-theme-color;
+        background-color: unset;
+        &:hover{
+          color: $main-theme-color;
+          background-color: unset;
+        }
+      }
+      .dropDownListIcon{
+        margin-left: 20px;
+      }
+    }
+  }
+  &.ant-tree-show-line{
+    li{
+      span.ant-tree-switcher{
+        background: #f6f9fd;
+      }
+    }
+  }
+}
+
+.ant-tree.ant-tree-show-line.hide-file-icon li span.ant-tree-switcher-noop {
+  background: transparent;
+}
+
+.ant-tree.ant-tree-show-line.hide-file-icon li:before {
+  content: " ";
+  width: 1px;
+  border-left: 1px solid #d9d9d9;
+  height: 100%;
+  position: absolute;
+  left: 12px;
+  top: 0;
+  margin: 0;
+}
+.ant-tree.ant-tree-show-line.hide-file-icon>li:before{
+  display: none;
+}
+.ant-tree.ant-tree-show-line.hide-file-icon>li{
+  >.ant-tree-switcher-noop:after{
+    display: none;
+  }
+}
+
+.ant-tree.ant-tree-show-line.hide-file-icon li:first-child:before {
+  top: 10px;
+  height: calc(100% - 6px);
+}
+
+.ant-tree.ant-tree-show-line.hide-file-icon li:last-child:before {
+  height: 16px;
+}
+
+.ant-tree.ant-tree-show-line.hide-file-icon li:first-child:last-child:before {
+  height: 10px;
+}
+
+.ant-tree.ant-tree-show-line.hide-file-icon li .ant-tree-switcher-noop > i {
+  visibility: hidden;
+}
+
+.ant-tree.ant-tree-show-line.hide-file-icon li .ant-tree-switcher-noop:after {
+  content: " ";
+  height: 1px;
+  border-bottom: 1px solid #d9d9d9;
+  width: 10px;
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  margin: 0;
+}
+
+.ant-tree{
+  .ant-tree-treenode{
+    .ant-tree-node-content-wrapper{
+      position: relative;
+      .ant-tree-title{
+        .tree-actions{
+          position: absolute;
+          right: 10px;
+          top: 3px;
+          background: #fff;
+          height: 20px;
+          .anticon{
+            font-size: 14px;
+            margin: 0 5px;
+            &.anticon-delete{
+              color: #d9363e;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1599px){
+  .ant-tree-title{
+    font-size: 13px;
+  }
+}

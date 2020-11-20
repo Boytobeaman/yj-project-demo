@@ -1,0 +1,82 @@
+@import "variables";
+
+
+.header#header {
+  height: #{$headerHeight};
+  @media screen and (max-width: 1599px){
+    height: #{$headerHeight1366};
+  }
+}
+
+.page-below-section {
+  height: calc(100vh - #{$headerHeight});
+  @media screen and (max-width: 1599px){
+    height: calc(100vh - #{$headerHeight1366});
+  }
+
+  .navMark {
+    .navBox {
+      height: calc(100vh - #{$headerHeight});
+      @media screen and (max-width: 1599px){
+        height: calc(100vh - #{$headerHeight1366});
+      }
+    }
+  }
+}
+
+.page-right-content-section {
+  width: 84.3%;
+  background: #f8f8f8;
+  height: 100%;
+  overflow: auto;
+  padding: $page-right-content-padding;
+  @media screen and (max-width: 1599px){
+    padding: $page-right-content-padding-1366;
+  }
+
+  &.view-mode {
+    width: 100%;
+  }
+
+  .page-content-wrap {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    min-height: 100%;
+    background: #ffffff;
+    box-shadow: 0 0 10px 0 rgba(185, 189, 195, 0.3), 0 0 10px 0 rgba(185, 189, 195, 0.3);
+    border: 1px solid #f0eeee;
+
+    .section-tree-panel {
+      position: relative;
+      overflow: auto;
+      background: #f6f9fd;
+      box-shadow: 3px 0 8px 4px rgba(185, 189, 195, 0.3), 0 0 10px 0 rgba(185, 189, 195, 0.3);
+      max-height: calc(100vh - #{$headerHeight} - #{$page-right-content-padding} * 2);
+      @media screen and (max-width: 1599px){
+        max-height: calc(100vh - #{$headerHeight1366} - #{$page-right-content-padding-1366} * 2);
+      }
+      //max-height: 100%;
+    }
+
+    .section-content-panel {
+      padding: 15px;
+
+      &.api-doc-content-panel {
+        padding: 0 0 0 0.8%;
+        iframe {
+          height: 100%;
+        }
+      }
+
+      .yj-breadcrumb-wrap {
+        margin-bottom: 30px;
+      }
+
+      .btn-wrap {
+        margin-bottom: 30px;
+      }
+    }
+  }
+}

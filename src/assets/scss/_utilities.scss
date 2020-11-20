@@ -1,0 +1,141 @@
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+
+  width: 5px;
+  height: 5px;
+  background: #FFFFFF;
+  /*border-radius: 8px;*/
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+  background: #FFFFFF;
+  border-radius: 5px;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  width: 4px;
+  height: 4px;
+  border-radius: 4px;
+  background: $main-theme-color;
+}
+
+.text-right{
+  text-align: right;
+}
+.text-center{
+  text-align: center;
+}
+.text-left{
+  text-align: left;
+}
+.mt-1{
+  margin-top: 1rem;
+}
+.mr-1{
+  margin-right: 1rem;
+}
+.mb-1{
+  margin-bottom: 1rem;
+}
+.mb-0{
+  margin-bottom: 0 !important;
+}
+.ml-1{
+  margin-left: 1rem;
+}
+.px-1{
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.p-0{
+  padding: 0 !important;
+}
+.py-2{
+  padding-top: 2rem !important;
+  padding-bottom: 2rem !important;
+}
+.py-3{
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
+}
+.text-error{
+  color: $error-color;
+}
+.text-small{
+  font-size: $font-size-small;
+}
+
+td i.anticon{
+  &.icon-lg{
+    font-size: 22px;
+  }
+  &:not(:last-of-type){
+    margin-right: 8px;
+  }
+}
+i.anticon{
+  &.active{
+    color: $main-theme-color;
+  }
+  &.disabled{
+    cursor: not-allowed;
+  }
+  &.icon-lg{
+    font-size: 22px;
+  }
+  &.icon-md{
+    font-size: 20px;
+  }
+}
+
+.full-spin{
+  background: rgba(251, 248, 248, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top:0;
+  right:0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1001;
+}
+.spinAuto{
+  background: rgba(251, 248, 248, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top:0;
+  right:0;
+  width: 100%;
+  height: 100%;
+  z-index: 1001;
+}
+
+
+.d-flex{
+  display: flex!important;
+}
+.justify-content-between{
+  justify-content: space-between!important;
+}
+.dataSearchIcons {
+  font-size: 20px !important;
+  //width: 20px;
+  //height: 20px;
+  cursor: pointer;
+
+  &:not(:last-child) {
+    margin-right: 3vh;
+  }
+
+  &:hover {
+    color: #2FC9E1;
+  }
+}
+.dataSearchIconsConnect{
+  font-size: 16px !important;
+}

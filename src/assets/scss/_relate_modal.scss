@@ -1,0 +1,356 @@
+.associatedModal {
+    margin-top: -8vh;
+
+    ul.ant-tree.ant-tree-show-line .ant-tree-switcher {
+        background-color: #F6F9FD;
+    }
+
+    .ant-modal-content .ant-modal-header {
+        background-color: #49B0FF;
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        color: #fff;
+        line-height: 5.7vh;
+        height: 5.7vh;
+
+        .ant-modal-title {
+            color: #fff;
+        }
+    }
+
+    .ant-modal-close-x {
+        height: 5.7vh;
+        line-height: 5.7vh;
+        color: #fff;
+    }
+
+    .tableColunm {
+        color: #00C1DF;
+        font-size: 20px;
+        cursor: pointer;
+
+        @media screen and (max-width: 1599px) {
+            font-size: 16px;
+        }
+    }
+
+    .modalTreeColLeft {
+        padding: 1.2vh 0 0 1.5vh;
+        height: 85vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+
+        .modalTreeLeftContent {
+            overflow-x: auto;
+            background-color: #F6F9FD;
+            height: calc(85vh - 1.2vh - 50px);
+
+            @media screen and (max-width: 1599px) {
+                height: calc(85vh - 1.2vh - 30px);
+            }
+        }
+    }
+
+    .modalSelect {
+        width: 7vw;
+        margin-left: 0.7vh;
+    }
+
+    .modalTreeColRight {
+        padding: 1.2vh;
+        height: 85vh;
+    }
+
+    .modalTreeBody {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+
+    .modalDataBody {
+        padding: 1.2vh;
+        border: 0.2vh solid #EEEEEE;
+        border-radius: 0 0 4px 4px;
+    }
+
+    .modalDataSearch {
+        width: 10vw;
+        margin-bottom: 1.2vh;
+    }
+
+    .modalDataTitle {
+        font-size: 14px;
+        color: #3D454E;
+        width: 100%;
+        padding: 1.2vh 0;
+        background: #ECF2FA;
+        border-radius: 4px 4px 0 0;
+        text-align: center;
+        margin: 0;
+    }
+
+    .modalMoveArrowContent {
+        display: flex;
+        justify-content: center;
+    }
+
+    .modalMoveArrow {
+        display: flex;
+        flex-flow: column;
+        font-size: 16px;
+        cursor: pointer;
+        padding: 0.8vh;
+    }
+
+    .tabContent {
+        padding: 1.2vh;
+        background: #FFFFFF;
+    }
+
+    .tableSt {
+        height: 22.2vh;
+        overflow: auto;
+    }
+
+    .tabContent .ant-checkbox-checked .ant-checkbox-inner {
+        background-color: #00C1DF !important;
+        border-color: #00C1DF !important;
+    }
+
+    .modalMoveArrowTwoUp {
+        margin-top: -1.5vh;
+    }
+
+    .modalMoveArrowTwoDown {
+        margin-top: -1.5vh;
+    }
+}
+
+.connectTagModal {
+    margin-top: -4vh;
+
+    ul.ant-tree.ant-tree-show-line .ant-tree-switcher {
+        background-color: #F8F8F8;
+    }
+
+    .doc-connect-model3 #viewerDoc ._2KwUGLA45dCxp4ZxsYAcom._19XJEAX5pc-ydfubpn0-_w.bos3dui-topRight {
+        div:nth-child(2) {
+            display: none;
+        }
+
+        div:nth-child(3) {
+            display: none;
+        }
+
+        div:nth-child(4) {
+            display: none;
+        }
+
+        div:nth-child(5) {
+            display: none;
+        }
+
+        div:nth-child(6) {
+            display: none;
+        }
+    }
+
+    .connectTagTree {
+        background-color: #F8F8F8;
+        position: relative;
+        overflow: auto;
+    }
+
+    .ant-modal-body .ant-row-flex {
+        margin: 0 !important;
+    }
+
+    .ant-modal-footer {
+        border: none;
+    }
+}
+
+.tagImportModal {
+    ul.ant-tree.ant-tree-show-line .ant-tree-switcher {
+        background-color: #F8F8F8;
+    }
+
+    .tagImportFlexLayout {
+        display: flex;
+        justify-content: center;
+        position: relative;
+
+        .tagPreviewBtn {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            cursor: pointer;
+            color: #00C1DF;
+            transform: translateY(-50%);
+            padding-bottom: 2px;
+            border-bottom: 1px solid #00C1DF;
+        }
+    }
+
+    .tagImportCursor {
+        cursor: pointer;
+    }
+
+    .tagImportButton {
+        margin-right: 0;
+    }
+
+    .tagImportTitle {
+        font-size: 16px;
+        color: #3D454E;
+
+        @media screen and (max-width: 1599px) {
+            font-size: 13px;
+        }
+    }
+
+    .tagImportContent {
+        flex-wrap: nowrap;
+        width: 100%;
+        background: #FFFFFF;
+        min-height: 100%;
+    }
+
+    .tagImportTree {
+        background-color: #F8F8F8;
+        position: relative;
+        overflow: auto;
+    }
+
+    .tagImportTable {
+        padding: 0 16px;
+    }
+
+    .tagImportColumnStyle1 {
+        width: calc(100% - 20px);
+        margin-right: 20px;
+        box-sizing: border-box;
+    }
+
+    .tagImportBtnContent {
+        display: flex;
+        justify-content: flex-end;
+        margin: 16px 0;
+        background: #FAFBFB;
+    }
+
+    .tagImportTableBack {
+        background: #FAFBFB;
+
+        .ant-table-placeholder {
+            background: #FAFBFB;
+        }
+
+        td.ant-table-row-cell-ellipsis.ant-table-row-cell-break-word {
+            background: #FAFBFB;
+        }
+
+        .ant-select-selection {
+            background: #FAFBFB;
+        }
+
+        input {
+            background: #FAFBFB;
+        }
+    }
+
+    .tagImportColumnStyle1.ant-cascader-picker.tagImportColumnStyle1 {
+        background: #FAFBFB;
+    }
+
+    .tagImportFltterTitle {
+        color: #49B0FF;
+        border-left: 4px solid #49B0FF;
+        padding: 0 4px;
+        margin: 20px 0;
+    }
+
+    .tagImportFltterContent {
+        margin-top: 20px;
+        padding-top: 1px;
+        background: #FAFBFB;
+    }
+
+    .tagImportDel {
+        font-size: 22px;
+        color: #00C1DF;
+        cursor: pointer;
+    }
+
+    .tagImportPoint {
+        color: #FF5050;
+    }
+}
+
+@media screen and (max-width: 1900px) {
+    .associatedModal {
+        .tableSt {
+            height: 22.5vh; //19vh
+        }
+    }
+}
+
+@media screen and (max-width: 1570px) {
+    .associatedModal {
+        .tableSt {
+            height: 22.5vh; //19vh
+        }
+    }
+}
+
+@media screen and (max-width: 1599px) {
+    .associatedModal {
+        font-size: 12px;
+        margin-top: -11vh;
+
+        .modalDataBody {
+            padding: 1vh;
+        }
+
+        .modalMoveArrow {
+            padding: 0.5vh;
+        }
+
+        .tableSt {
+            height: 22vh; //19vh
+        }
+
+        .modalDataTitle {
+            padding: 1vh 0;
+            font-size: 12px;
+        }
+
+        .modalTreeBody {
+            font-size: 12px;
+        }
+
+        .modalSelect {
+            font-size: 12px;
+        }
+
+        .modalMoveArrowTwoDown {
+            margin-top: -1.8vh;
+        }
+
+        .modalMoveArrowTwoUp {
+            margin-top: -1.8vh;
+        }
+    }
+
+    .connectTagModal {
+        font-size: 12px;
+        margin-top: -10vh;
+    }
+
+    .tagImportModal {
+        font-size: 12px;
+    }
+}
