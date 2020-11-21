@@ -25,6 +25,7 @@ const index = props => {
   const [activeGroupedTagAttributes, setActiveGroupedTagAttributes] = useState(
     [],
   );
+  const [deviceName, setDeviceName] = useState('');
 
   const [activeComponentKey, setActiveComponentKey] = useState('');
   const [activeTagKey, setActiveTagKey] = useState('');
@@ -57,7 +58,17 @@ const index = props => {
     if (bindedTagRes && bindedTagRes.data && bindedTagRes.data.length > 0) {
       bindedTag = bindedTagRes.data[0];
       let tagKey = bindedTag.tagKey;
-      await setActiveTagKey(tagKey);
+      setActiveTagKey(tagKey);
+      console.log(`tagkey == ${tagKey}`);
+      if (tagKey === '39a3776fe88b457cac00281555e68a04') {
+        setDeviceName(1);
+      }
+      if (tagKey === '424d2820533b4cdfbe671f89382d5891') {
+        setDeviceName(2);
+      }
+      if (tagKey === 'ab2c074023da434ebd0e38dbb425b7b3') {
+        setDeviceName(3);
+      }
 
       let tagDetailRes = await getTagDetails(tagKey);
       let tagDetail = {};
@@ -73,7 +84,7 @@ const index = props => {
           return item.groupName;
         });
 
-        await setActiveGroupedTagAttributes(groupedTagAttributes);
+        setActiveGroupedTagAttributes(groupedTagAttributes);
 
         let iotData = getAttrIOTData(
           'IoT数据',
@@ -92,9 +103,8 @@ const index = props => {
               ? tagTreeNodeKeyRes.data.data[0].uoBldStructuresKey
               : '';
         }
-        await setActiveTreeNodeKey(tagTreeNodeKey);
-        debugger;
-        updateIOTData();
+        setActiveTreeNodeKey(tagTreeNodeKey);
+        console.log(`activeTreeNodeKey 1 ====${activeTreeNodeKey}`);
       }
     } else {
       setShowAttr(false);
@@ -164,13 +174,15 @@ const index = props => {
 
   const updateIOTData = () => {
     console.log(`trigger updateIOTData`);
-    debugger;
+    console.log(`activeTreeNodeKey ${activeTreeNodeKey}`);
+    console.log(`activeTagKey ${activeTagKey}`);
+
     if (activeTreeNodeKey && activeTagKey) {
       if (updateIOTDataInterval) {
         clearInterval(updateIOTDataInterval);
         updateIOTDataInterval = null;
       }
-      debugger;
+
       updateIOTDataInterval = setInterval(async () => {
         let updateRes = await getUpdatedIOTData(
           activeTreeNodeKey,
@@ -186,7 +198,7 @@ const index = props => {
           );
           setIotData(iotData);
         }
-      }, 5000);
+      }, 1000);
     } else {
       if (updateIOTDataInterval) {
         clearInterval(updateIOTDataInterval);
@@ -198,6 +210,10 @@ const index = props => {
   useEffect(() => {
     initialViewer3D();
   }, []);
+
+  useEffect(() => {
+    updateIOTData();
+  }, [activeTreeNodeKey]);
 
   const columns = [
     {
@@ -218,13 +234,13 @@ const index = props => {
       {showAttr && (
         <div className="attr-wrapper">
           <h3 style={{ textAlign: 'center', color: '#fff' }}>
-            2 号低压配电柜运行状态{' '}
+            {deviceName} 号低压配电柜运行状态{' '}
           </h3>
           <Table
             dataSource={iotData}
             showHeader={false}
             size="small"
-            scroll={{ y: 500 }}
+            scroll={{ y: '70vh' }}
             columns={columns}
             pagination={false}
           />
