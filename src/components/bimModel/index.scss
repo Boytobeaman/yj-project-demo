@@ -10,6 +10,11 @@
         cursor: pointer;
         padding: 10px;
     }
+    .btn-wrap{
+        display: flex;
+        justify-content: space-between;
+        padding-top: 20px;
+    }
     .ant-table{
         background:  rgba(45, 51, 67, 0.7);
         td{

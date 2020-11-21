@@ -278,6 +278,16 @@ const index = props => {
     },
   ];
 
+  const designPlan = () => {
+    let url = `http://building-bos3d-alpha.rickricks.com:8080/static/index2D.html?dbName=o5fabba65a3c40c4bfeaaa1fabd443f7&modelId=M1605850523549&url=http://building-bos3d-alpha.rickricks.com`;
+    window.open(url);
+  };
+
+  const pdfPlan = () => {
+    let url = `/document/Blokset 5000高可靠性智能低压成套系统 产品目录.pdf`;
+    window.open(url);
+  };
+
   return (
     <>
       <div id="viewport" style={{ height: '100%', width: '100%' }}></div>
@@ -290,10 +300,18 @@ const index = props => {
             dataSource={iotData}
             showHeader={false}
             size="small"
-            scroll={{ y: '70vh' }}
+            scroll={{ y: '65vh' }}
             columns={columns}
             pagination={false}
           />
+          <div className="btn-wrap">
+            <Button type="primary" onClick={designPlan} size="small">
+              设计图纸
+            </Button>
+            <Button type="primary" onClick={pdfPlan} size="small">
+              使用说明书
+            </Button>
+          </div>
         </div>
       )}
     </>
