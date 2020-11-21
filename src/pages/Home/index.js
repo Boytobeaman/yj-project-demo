@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Row, Col } from 'antd';
 import { connect } from 'umi';
 import BimModel from '@/components/bimModel';
-import SpaceUsage from '@/components/paceUsage';
+import SpaceUsage from '@/components/spaceUsage';
 import './index.scss';
 
 const index = props => {
