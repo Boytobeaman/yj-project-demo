@@ -18,6 +18,50 @@ import AttrDetail from '@/components/attrDetail';
 
 let updateIOTDataInterval = null;
 
+function dragElement(elmnt) {
+  var pos1 = 0,
+    pos2 = 0,
+    pos3 = 0,
+    pos4 = 0;
+  if (document.getElementById(elmnt.id + 'header')) {
+    /* if present, the header is where you move the DIV from:*/
+    document.getElementById(elmnt.id + 'header').onmousedown = dragMouseDown;
+  } else {
+    /* otherwise, move the DIV from anywhere inside the DIV:*/
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = elmnt.offsetTop - pos2 + 'px';
+    elmnt.style.left = elmnt.offsetLeft - pos1 + 'px';
+  }
+
+  function closeDragElement() {
+    /* stop moving when mouse button is released:*/
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+
 const index = props => {
   const [showAttr, setShowAttr] = useState(false);
 
@@ -212,8 +256,14 @@ const index = props => {
   }, []);
 
   useEffect(() => {
+    if (showAttr) {
+      dragElement(document.getElementById('mydiv'));
+    }
+  }, [showAttr]);
+
+  useEffect(() => {
     updateIOTData();
-  }, [activeTreeNodeKey]);
+  }, [activeTreeNodeKey, activeTagKey]);
 
   const columns = [
     {
@@ -232,8 +282,8 @@ const index = props => {
     <>
       <div id="viewport" style={{ height: '100%', width: '100%' }}></div>
       {showAttr && (
-        <div className="attr-wrapper">
-          <h3 style={{ textAlign: 'center', color: '#fff' }}>
+        <div id="mydiv" className="attr-wrapper">
+          <h3 id="mydivheader" style={{ textAlign: 'center', color: '#fff' }}>
             {deviceName} 号低压配电柜运行状态{' '}
           </h3>
           <Table
