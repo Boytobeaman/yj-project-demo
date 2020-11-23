@@ -104,13 +104,13 @@ const index = props => {
       let tagKey = bindedTag.tagKey;
       setActiveTagKey(tagKey);
       console.log(`tagkey == ${tagKey}`);
-      if (tagKey === '39a3776fe88b457cac00281555e68a04') {
+      if (tagKey === '6e8a18aa597f46a49f40d63048e12aa1') {
         setDeviceName(1);
       }
-      if (tagKey === '424d2820533b4cdfbe671f89382d5891') {
+      if (tagKey === '69b7037d695646dd9cf3bd7716d8adf1') {
         setDeviceName(2);
       }
-      if (tagKey === 'ab2c074023da434ebd0e38dbb425b7b3') {
+      if (tagKey === '876c327e5ee44d7387541b39f6a23d63') {
         setDeviceName(3);
       }
 
@@ -189,7 +189,7 @@ const index = props => {
     });
 
     window.viewer3D = viewer3D;
-    let modelKey = 'M1605848728028';
+    let modelKey = 'M1606125631310';
     viewer3D.addView(modelKey, BOS3D_DATABASE_KEY);
     viewer3D.setSceneBackGroundColor('#00ff00', 0); //设置背景色
     viewer3D.disableViewController(); //隐藏右上角 控制方块

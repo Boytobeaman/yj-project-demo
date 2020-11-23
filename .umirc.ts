@@ -39,12 +39,12 @@ export default defineConfig({
   },
   cssModulesTypescriptLoader: {},
   define: {
-    USERNAME: '18516577050',
-    PASSWORD: 'LXCbim168',
-    BUILDING_KEY: 'b8481275299b4fd4a3469347e55c704c',
+    USERNAME: 'yingjiahulian',
+    PASSWORD: 'admin_2017',
+    BUILDING_KEY: 'h191c7f5fc68490ea2e36629bdbcd7c5',
 
-    BASE_URL: 'http://building-bos-alpha.rickricks.com',
-    BASE_3D_URL: 'http://building-bos3d-alpha.rickricks.com',
-    BOS3D_DATABASE_KEY: 'o5fabba65a3c40c4bfeaaa1fabd443f7',
+    BASE_URL: 'http://alpha-building-hkiot-bosgw.rickricks.com.cn',
+    BASE_3D_URL: 'http://alpha-building-hkiot-bos3d.rickricks.com.cn',
+    BOS3D_DATABASE_KEY: 's3b3e1986d044aa299f0d45ae98a7651',
   },
 });
