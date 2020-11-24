@@ -104,13 +104,13 @@ const index = props => {
       let tagKey = bindedTag.tagKey;
       setActiveTagKey(tagKey);
       console.log(`tagkey == ${tagKey}`);
-      if (tagKey === '6e8a18aa597f46a49f40d63048e12aa1') {
+      if (tagKey === '884de4c31a5441399aebd9e7bd0871b6') {
         setDeviceName(1);
       }
-      if (tagKey === '69b7037d695646dd9cf3bd7716d8adf1') {
+      if (tagKey === '1fa7cbcd55d443168182b0447a216eaf') {
         setDeviceName(2);
       }
-      if (tagKey === '876c327e5ee44d7387541b39f6a23d63') {
+      if (tagKey === '3aa9e478997c4347bd708883b482f20b') {
         setDeviceName(3);
       }
 
