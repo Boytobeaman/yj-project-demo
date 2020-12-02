@@ -19,18 +19,21 @@ export async function getAllModelData() {
   );
 }
 
+//根据 componentKey 查询其对应的物项
 export async function tagModelRel(componentKey) {
   return request.get(
     `${BASE_URL}/buildingservice/${BUILDING_KEY}/tagModelRel?componentKey=${componentKey}`,
   );
 }
 
+// 根据物项key 查询物项详情
 export async function getTagDetails(tagKey) {
   return request.get(
     `${BASE_URL}/bosfoundationservice/${BUILDING_KEY}/prototype/entity/tags/${tagKey}?noRelation=true`,
   );
 }
 
+//查询物项的属性/属性组信息
 export async function getTagAttributes(tagKey) {
   let body = {
     condition: [
@@ -129,7 +132,6 @@ export async function getTagAttributes(tagKey) {
 }
 
 // 根据 tagKey 获取其对应的树节点
-
 export async function getTagTreeNodeKey(tagKey) {
   let body = {
     condition: [
@@ -170,6 +172,7 @@ export async function getTagTreeNodeKey(tagKey) {
   );
 }
 
+//根据物项key 及其所属的树节点查询物项的 iot 实时数据
 export async function getUpdatedIOTData(tagTreeNodeKey, activeTagKey) {
   let body = {
     condition: [
@@ -234,3 +237,9 @@ export async function getUpdatedIOTData(tagTreeNodeKey, activeTagKey) {
     { data: JSON.stringify(body) },
   );
 }
+
+// 根据物项key 查询物项关联的文档
+
+//根据物项key 查询物项关联的自定义数据
+
+//根据物项key  查询物项关联的物项
