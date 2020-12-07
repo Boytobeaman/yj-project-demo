@@ -157,63 +157,82 @@ const index = props => {
   };
 
   const initialViewer3D = () => {
-    const option = { host: BASE_3D_URL, viewport: 'viewport' };
-    const viewer3D = new BOS3D.Viewer(option);
+    // const option = { host: BASE_3D_URL, viewport: 'viewport' };
+    // const viewer3D = new BOS3D.Viewer(option);
 
-    const bos3dui = new BOS3DUI({
-      viewer3D: viewer3D,
-      BOS3D: BOS3D,
-      // 可选，需要显示哪些工具栏。默认都是true
-      funcOption: {
-        // init: false, // 初始化
-        // fit: false, // 聚焦
-        // undo: false, // 撤销
-        // roam: false, // 漫游
-        // pickByRect: false, // 框选
-        // hide: false, // 隐藏
-        // isolate: false, // 构件隔离
-        // section: false, // 剖切
-        // wireFrame: false, // 线框化
-        // scatter: false, // 模型分解
-        // changeCptColor: false, // 构件变色
-        // setting: false, // 设置
-        // fullScreen: false, // 全屏
-        // changeBgColor: false, // 改变背景色
-        // cptInfo: false, // 构件信息
-        // infoTree: false, // 结构树
-        // measure: false, // 测量
-        // mark: false, // 标签
-        // snapshot: false, // 快照
-        // annotation: false, // 批注
+    const linkage = new Linkage({
+      BOS3D: window.BOS3D,
+      BOS2D: window.BOS2D,
+      BOS3DUI: window.BOS3DUI,
+      selector: '#viewport', // 插件会插入到这个dom内部
+      host: BASE_3D_URL, // 对应viewer3D初始化参数里的host
+      token: '',
+      onInitComplete: () => {
+        // 由于涉及到异步初始化，如果想在一开始就获取到如下实例，需要用这个方法
+        console.log(
+          'test: ',
+          linkage.viewer3D,
+          linkage.viewer2D,
+          linkage.bos3dui,
+        );
+        // const bos3dui = new BOS3DUI({
+        //   viewer3D: linkage.viewer3D,
+        //   BOS3D: BOS3D,
+        //   // 可选，需要显示哪些工具栏。默认都是true
+        //   funcOption: {
+        //     // init: false, // 初始化
+        //     // fit: false, // 聚焦
+        //     // undo: false, // 撤销
+        //     // roam: false, // 漫游
+        //     // pickByRect: false, // 框选
+        //     // hide: false, // 隐藏
+        //     // isolate: false, // 构件隔离
+        //     // section: false, // 剖切
+        //     // wireFrame: false, // 线框化
+        //     // scatter: false, // 模型分解
+        //     // changeCptColor: false, // 构件变色
+        //     // setting: false, // 设置
+        //     // fullScreen: false, // 全屏
+        //     // changeBgColor: false, // 改变背景色
+        //     // cptInfo: false, // 构件信息
+        //     // infoTree: false, // 结构树
+        //     // measure: false, // 测量
+        //     // mark: false, // 标签
+        //     // snapshot: false, // 快照
+        //     // annotation: false, // 批注
+        //   },
+        // });
+
+        window.viewer3D = linkage.viewer3D;
+
+        viewer3D.setSceneBackGroundColor('#00ff00', 0); //设置背景色
+        viewer3D.disableViewController(); //隐藏右上角 控制方块
+
+        window.viewer3D.registerModelEventListener(
+          window.BOS3D.EVENTS.ON_CLICK_PICK,
+          async event => {
+            // console.log(event, "-----");
+
+            if (event.intersectInfo) {
+              let selectedObjectId = event.intersectInfo.selectedObjectId;
+              if (updateIOTDataInterval) {
+                clearInterval(updateIOTDataInterval);
+                updateIOTDataInterval = null;
+              }
+              console.log('a', '-----');
+              getIOTdata(selectedObjectId);
+              setActiveComponentKey(selectedObjectId);
+            } else {
+              setShowAttr(false);
+              resetData();
+            }
+          },
+        );
       },
     });
+    let modelKey = 'M1606899191432';
 
-    window.viewer3D = viewer3D;
-    let modelKey = 'M1606896387589';
-    viewer3D.addView(modelKey, BOS3D_DATABASE_KEY);
-    viewer3D.setSceneBackGroundColor('#00ff00', 0); //设置背景色
-    viewer3D.disableViewController(); //隐藏右上角 控制方块
-
-    window.viewer3D.registerModelEventListener(
-      window.BOS3D.EVENTS.ON_CLICK_PICK,
-      async event => {
-        // console.log(event, "-----");
-
-        if (event.intersectInfo) {
-          let selectedObjectId = event.intersectInfo.selectedObjectId;
-          if (updateIOTDataInterval) {
-            clearInterval(updateIOTDataInterval);
-            updateIOTDataInterval = null;
-          }
-          console.log('a', '-----');
-          getIOTdata(selectedObjectId);
-          setActiveComponentKey(selectedObjectId);
-        } else {
-          setShowAttr(false);
-          resetData();
-        }
-      },
-    );
+    linkage.addView(modelKey, BOS3D_DATABASE_KEY);
   };
 
   const updateIOTData = () => {
