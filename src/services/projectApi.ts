@@ -243,3 +243,152 @@ export async function getUpdatedIOTData(tagTreeNodeKey, activeTagKey) {
 //根据物项key 查询物项关联的自定义数据
 
 //根据物项key  查询物项关联的物项
+
+//物项属性 的属性组 type=data，建筑结构数据的 属性组 type=node
+//根据建筑结构树节点，获取此节点的属性组信息
+export async function getBldStructuresAttributeGroups(treeKey, type = 'node') {
+  let body = {
+    condition: [
+      {
+        bosclass: 'uoBldStructures',
+        alias: 'd1',
+        subCondition: [
+          {
+            field: '_key',
+            operator: '==',
+            value: treeKey,
+            number: 'false',
+          },
+        ],
+      },
+      {
+        bosclass: 'uoAttributeGroups',
+        alias: 'd2',
+        subCondition: [
+          {
+            field: 'bosclass',
+            operator: '==',
+            value: 'uoAttributeGroups',
+            number: 'false',
+          },
+        ],
+      },
+      {
+        bosclass: 'uirStructureAttribute',
+        alias: 'u',
+        type: 'relationship',
+        from: 'd1',
+        to: 'd2',
+        subCondition: [
+          {
+            field: 'type',
+            operator: '==',
+            value: type,
+            number: 'false',
+          },
+        ],
+      },
+    ],
+    select: {
+      name: 'd2.name',
+      key: 'd2._key',
+      order: 'd2.order',
+      source: 'u.source',
+      type: 'u.type',
+    },
+  };
+  return request.post(
+    `${BASE_URL}/bosfoundationservice/${BUILDING_KEY}/prototype/linked/query`,
+    { data: JSON.stringify(body) },
+  );
+}
+
+//根据建筑结构树节点，获取此节点的属性信息
+
+//物项属性 的属性 type=data，建筑结构数据的 属性 type=node
+export async function getBldStructuresAttributes(treeKey, type = 'node') {
+  let body = {
+    condition: [
+      {
+        bosclass: 'uoBldStructures',
+        alias: 'd1',
+        subCondition: [
+          {
+            field: '_key',
+            operator: '==',
+            value: treeKey,
+            number: 'false',
+          },
+        ],
+      },
+      {
+        bosclass: 'uoAttributes',
+        alias: 'd2',
+        subCondition: [
+          {
+            field: 'bosclass',
+            operator: '==',
+            value: 'uoAttributes',
+            number: 'false',
+          },
+        ],
+      },
+      {
+        bosclass: 'uoAttributeGroups',
+        alias: 'd3',
+        subCondition: [
+          {
+            field: 'bosclass',
+            operator: '==',
+            value: 'uoAttributeGroups',
+            number: 'false',
+          },
+        ],
+      },
+      {
+        bosclass: 'uirAttributeAttributeGroup',
+        alias: 'u1',
+        type: 'relationship',
+        from: 'd2',
+        to: 'd3',
+        subCondition: [],
+      },
+      {
+        bosclass: 'uirStructureAttribute',
+        alias: 'u',
+        type: 'relationship',
+        from: 'd1',
+        to: 'd2',
+        subCondition: [
+          {
+            field: 'type',
+            operator: '==',
+            value: type,
+            number: 'false',
+          },
+        ],
+      },
+    ],
+    select: {
+      name: 'd2.name',
+      key: 'd2._key',
+      order: 'd2.order',
+      source: 'u.source',
+      type: 'u.type',
+      groupName: 'd3.name',
+      groupKey: 'd3._key',
+      groupOldKey: 'd3._key',
+      require: 'd2.require',
+      primary: 'd2.primary',
+      point: 'd2.iotCode',
+      pointGroup: 'd2.iotGroup',
+      value: 'd2.value',
+      bosclass: 'd2.bosclass',
+      groupOrder: 'd3.order',
+    },
+  };
+  return request.post(
+    `${BASE_URL}/bosfoundationservice/${BUILDING_KEY}/prototype/linked/query`,
+    { data: JSON.stringify(body) },
+  );
+}
