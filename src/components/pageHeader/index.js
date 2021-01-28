@@ -5,7 +5,7 @@ import './index.scss';
 const PageHeader = () => {
   return (
     <div className="page-header">
-      <div className="header-title">配电柜数字孪生</div>
+      <div className="header-title">资产管理</div>
     </div>
   );
 };
