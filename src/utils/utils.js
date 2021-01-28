@@ -67,37 +67,39 @@ export function nextOrderNumber(num) {
   return Math.ceil((num + 1) * 0.1) * 10;
 }
 
-
 /**
- * 
+ *
  * 在原对象中增加属性，如果新对象和原对象的某个属性都是个对象，
  * 不直接替换，而是遍历新对象的属性，递归为原对象增加属性
- * @param {原对象} originalObject 
- * @param {要将属性增加到原对象的对象} addObject 
+ * @param {原对象} originalObject
+ * @param {要将属性增加到原对象的对象} addObject
  */
 export function addObjectAttr(originalObject, addObject) {
-  if(!originalObject){
-      originalObject = {}
+  if (!originalObject) {
+    originalObject = {};
   }
   for (let key of Object.keys(addObject)) {
-
-    if(Object.prototype.toString.call(addObject[key])==='[object Object]'){
-      originalObject[key] = addObjectAttr(originalObject[key], addObject[key])
-    }else{
-      originalObject[key] = addObject[key]
+    if (Object.prototype.toString.call(addObject[key]) === '[object Object]') {
+      originalObject[key] = addObjectAttr(originalObject[key], addObject[key]);
+    } else {
+      originalObject[key] = addObject[key];
     }
   }
-  return originalObject
+  return originalObject;
 }
 
 //公共访问的路由
 export const publicAccessRoutes = [
   {
-    url:'/test',
-    type: ""
+    url: '/test',
+    type: '',
   },
   {
-    url:'/go',
-    type:"noLayout"
-  }
+    url: '/go',
+    type: 'noLayout',
+  },
+  {
+    url: '/shuishi',
+    type: '',
+  },
 ];

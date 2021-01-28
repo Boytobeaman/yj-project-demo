@@ -12,6 +12,7 @@ import {
   getComponentsByModelkey,
   getBatchComponentsAttrs,
 } from '../../services/projectApi';
+import { autoLogin } from '../../services/loginApi';
 // import ItemDataAttribute from './ItemDataAttribute';
 
 import './index.scss';
@@ -296,9 +297,21 @@ const index = props => {
     }
   };
 
-  useEffect(() => {
-    initialViewer3D();
-    getComponentsData();
+  useEffect(async () => {
+    if (!sessionStorage.getItem('accessToken')) {
+      let loginRes = await autoLogin();
+      if (loginRes && loginRes.data) {
+        window.sessionStorage.setItem(
+          'accessToken',
+          loginRes.data.access_token,
+        );
+        initialViewer3D();
+        getComponentsData();
+      }
+    } else {
+      initialViewer3D();
+      getComponentsData();
+    }
   }, []);
 
   useEffect(() => {
