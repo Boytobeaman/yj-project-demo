@@ -327,10 +327,8 @@ const index = props => {
   }, [selectedRowKeys]);
 
   useEffect(() => {
-    if (showAttr) {
-      dragElement(document.getElementById('mydiv'));
-    }
-  }, [showAttr]);
+    dragElement(document.getElementById('mydiv'));
+  }, []);
 
   useEffect(() => {
     updateIOTData();
@@ -508,6 +506,9 @@ const index = props => {
         </div>
       )} */}
       <div id="mydiv" className="attr-wrapper">
+        <h3 id="mydivheader" style={{ textAlign: 'center', color: '#fff' }}>
+          构件列表
+        </h3>
         <Table
           dataSource={componentsData}
           // showHeader={false}
