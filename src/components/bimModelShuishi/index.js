@@ -248,7 +248,6 @@ const index = props => {
         components.data,
         'name,key,attribute.绝缘层.隔热层厚度,attribute.约束.顶部高程,attribute.机械.粗糙度',
       );
-      debugger;
       console.log(componentsAttrs.data);
       setGettingComponentsData(false);
       if (componentsAttrs && componentsAttrs.data) {
