@@ -26,14 +26,14 @@ export async function tagModelRel(componentKey) {
   );
 }
 
-// 根据物项key 查询物项详情
+// 根据物项key， 查询物项详情
 export async function getTagDetails(tagKey) {
   return request.get(
     `${BASE_URL}/bosfoundationservice/${BUILDING_KEY}/prototype/entity/tags/${tagKey}?noRelation=true`,
   );
 }
 
-//查询物项的属性/属性组信息
+//根据物项key，查询物项的属性/属性组信息
 export async function getTagAttributes(tagKey) {
   let body = {
     condition: [
@@ -239,6 +239,49 @@ export async function getUpdatedIOTData(tagTreeNodeKey, activeTagKey) {
 }
 
 // 根据物项key 查询物项关联的文档
+export async function getRelatedDocsByTag(tagKey) {
+  let body = {
+    condition: [
+      {
+        bosclass: 'uoDocDocument',
+        alias: 'udd',
+        subCondition: [],
+      },
+      {
+        bosclass: 'tags',
+        alias: 'tags',
+        subCondition: [
+          {
+            field: '_key',
+            operator: '==',
+            value: tagKey,
+            number: 'false',
+          },
+        ],
+      },
+      {
+        bosclass: 'irTagDocument',
+        alias: 'itd',
+        type: 'relationship',
+        from: 'tags',
+        to: 'udd',
+        subCondition: [],
+      },
+    ],
+    select: {
+      name: 'udd.name',
+      key: 'udd._key',
+      revision: 'udd.revision',
+      code: 'udd.code',
+      type: 'itd.type',
+    },
+  };
+
+  return request.post(
+    `${BASE_URL}/bosfoundationservice/${BUILDING_KEY}/prototype/linked/query?page=1&per_page=10`,
+    { data: JSON.stringify(body) },
+  );
+}
 
 //根据物项key 查询物项关联的自定义数据
 
@@ -390,5 +433,21 @@ export async function getBldStructuresAttributes(treeKey, type = 'node') {
   return request.post(
     `${BASE_URL}/bosfoundationservice/${BUILDING_KEY}/prototype/linked/query`,
     { data: JSON.stringify(body) },
+  );
+}
+
+export async function getComponentsByModelkey(modelKey: string) {
+  return request.get(
+    `${BASE_URL}/bos3dengine/api/${BOS3D_DATABASE_KEY}/components/keys?modelKey=${modelKey}`,
+  );
+}
+
+export async function getBatchComponentsAttrs(
+  components: Array<string>,
+  attrs: string,
+) {
+  return request.post(
+    `${BASE_URL}/bos3dengine/api/${BOS3D_DATABASE_KEY}/components/batch?return=${attrs}`,
+    { data: JSON.stringify({ components }) },
   );
 }

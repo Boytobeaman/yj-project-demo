@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Badge, Popconfirm, Table } from 'antd';
+import { Button, Badge, Popconfirm, Table, message } from 'antd';
 import _ from 'lodash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
@@ -9,12 +9,18 @@ import {
   getTagAttributes,
   getTagTreeNodeKey,
   getUpdatedIOTData,
+  getComponentsByModelkey,
+  getBatchComponentsAttrs,
 } from '../../services/projectApi';
 // import ItemDataAttribute from './ItemDataAttribute';
 
 import './index.scss';
 
+import AttrDetail from '@/components/attrDetail';
+
 let updateIOTDataInterval = null;
+
+const modelKey = 'M1611804498920';
 
 function dragElement(elmnt) {
   var pos1 = 0,
@@ -64,6 +70,10 @@ const index = props => {
   const [showAttr, setShowAttr] = useState(false);
 
   const [iotData, setIotData] = useState([]);
+  const [componentsData, setComponentsData] = useState([]);
+  const [gettingComponentsData, setGettingComponentsData] = useState(false);
+
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [activeGroupedTagAttributes, setActiveGroupedTagAttributes] = useState(
     [],
   );
@@ -94,65 +104,65 @@ const index = props => {
     return nameAndValues;
   };
 
-  const getIOTdata = async selectedObjectId => {
-    let bindedTagRes = await tagModelRel(selectedObjectId);
-    let bindedTag;
-    if (bindedTagRes && bindedTagRes.data && bindedTagRes.data.length > 0) {
-      bindedTag = bindedTagRes.data[0];
-      let tagKey = bindedTag.tagKey;
-      setActiveTagKey(tagKey);
-      console.log(`tagkey == ${tagKey}`);
-      if (tagKey === '884de4c31a5441399aebd9e7bd0871b6') {
-        setDeviceName(1);
-      }
-      if (tagKey === '1fa7cbcd55d443168182b0447a216eaf') {
-        setDeviceName(2);
-      }
-      if (tagKey === '3aa9e478997c4347bd708883b482f20b') {
-        setDeviceName(3);
-      }
+  // const getIOTdata = async selectedObjectId => {
+  //   let bindedTagRes = await tagModelRel(selectedObjectId);
+  //   let bindedTag;
+  //   if (bindedTagRes && bindedTagRes.data && bindedTagRes.data.length > 0) {
+  //     bindedTag = bindedTagRes.data[0];
+  //     let tagKey = bindedTag.tagKey;
+  //     setActiveTagKey(tagKey);
+  //     console.log(`tagkey == ${tagKey}`);
+  //     if (tagKey === '884de4c31a5441399aebd9e7bd0871b6') {
+  //       setDeviceName(1);
+  //     }
+  //     if (tagKey === '1fa7cbcd55d443168182b0447a216eaf') {
+  //       setDeviceName(2);
+  //     }
+  //     if (tagKey === '3aa9e478997c4347bd708883b482f20b') {
+  //       setDeviceName(3);
+  //     }
 
-      let tagDetailRes = await getTagDetails(tagKey);
-      let tagDetail = {};
-      if (tagDetailRes.code === 'SUCCESS') {
-        tagDetail = tagDetailRes.data.basicAttribute;
-      }
-      let tagAttributesRes = await getTagAttributes(tagKey);
-      let tagAttributes;
-      if (tagAttributesRes.code === 'SUCCESS') {
-        tagAttributes = tagAttributesRes.data.data;
+  //     let tagDetailRes = await getTagDetails(tagKey);
+  //     let tagDetail = {};
+  //     if (tagDetailRes.code === 'SUCCESS') {
+  //       tagDetail = tagDetailRes.data.basicAttribute;
+  //     }
+  //     let tagAttributesRes = await getTagAttributes(tagKey);
+  //     let tagAttributes;
+  //     if (tagAttributesRes.code === 'SUCCESS') {
+  //       tagAttributes = tagAttributesRes.data.data;
 
-        let groupedTagAttributes = _.groupBy(tagAttributes, item => {
-          return item.groupName;
-        });
+  //       let groupedTagAttributes = _.groupBy(tagAttributes, item => {
+  //         return item.groupName;
+  //       });
 
-        setActiveGroupedTagAttributes(groupedTagAttributes);
+  //       setActiveGroupedTagAttributes(groupedTagAttributes);
 
-        let iotData = getAttrIOTData(
-          'IoT数据',
-          groupedTagAttributes,
-          tagDetail,
-        );
+  //       let iotData = getAttrIOTData(
+  //         'IoT数据',
+  //         groupedTagAttributes,
+  //         tagDetail,
+  //       );
 
-        setIotData(iotData);
-        setShowAttr(true);
+  //       setIotData(iotData);
+  //       setShowAttr(true);
 
-        let tagTreeNodeKeyRes = await getTagTreeNodeKey(tagKey);
-        let tagTreeNodeKey = '';
-        if (tagTreeNodeKeyRes && tagTreeNodeKeyRes.code === 'SUCCESS') {
-          tagTreeNodeKey =
-            tagTreeNodeKeyRes.data.data.length > 0
-              ? tagTreeNodeKeyRes.data.data[0].uoBldStructuresKey
-              : '';
-        }
-        setActiveTreeNodeKey(tagTreeNodeKey);
-        console.log(`activeTreeNodeKey 1 ====${activeTreeNodeKey}`);
-      }
-    } else {
-      setShowAttr(false);
-      resetData();
-    }
-  };
+  //       let tagTreeNodeKeyRes = await getTagTreeNodeKey(tagKey);
+  //       let tagTreeNodeKey = '';
+  //       if (tagTreeNodeKeyRes && tagTreeNodeKeyRes.code === 'SUCCESS') {
+  //         tagTreeNodeKey =
+  //           tagTreeNodeKeyRes.data.data.length > 0
+  //             ? tagTreeNodeKeyRes.data.data[0].uoBldStructuresKey
+  //             : '';
+  //       }
+  //       setActiveTreeNodeKey(tagTreeNodeKey);
+  //       console.log(`activeTreeNodeKey 1 ====${activeTreeNodeKey}`);
+  //     }
+  //   } else {
+  //     setShowAttr(false);
+  //     resetData();
+  //   }
+  // };
 
   const initialViewer3D = () => {
     // const option = { host: BASE_3D_URL, viewport: 'viewport' };
@@ -213,13 +223,14 @@ const index = props => {
 
             if (event.intersectInfo) {
               let selectedObjectId = event.intersectInfo.selectedObjectId;
-              if (updateIOTDataInterval) {
-                clearInterval(updateIOTDataInterval);
-                updateIOTDataInterval = null;
-              }
-              console.log('a', '-----');
-              getIOTdata(selectedObjectId);
+              // if (updateIOTDataInterval) {
+              //   clearInterval(updateIOTDataInterval);
+              //   updateIOTDataInterval = null;
+              // }
+              // console.log('a', '-----');
+              // getIOTdata(selectedObjectId);
               setActiveComponentKey(selectedObjectId);
+              setSelectedRowKeys([selectedObjectId]);
             } else {
               setShowAttr(false);
               resetData();
@@ -228,9 +239,26 @@ const index = props => {
         );
       },
     });
-    let modelKey = 'M1606899191432';
 
     linkage.addView(modelKey, BOS3D_DATABASE_KEY);
+  };
+
+  const getComponentsData = async () => {
+    setGettingComponentsData(true);
+    let components = await getComponentsByModelkey(modelKey);
+    if (components && components.data && components.data.length > 0) {
+      let componentsAttrs = await getBatchComponentsAttrs(
+        components.data,
+        'name,key',
+      );
+      setGettingComponentsData(false);
+      if (componentsAttrs && componentsAttrs.data) {
+        setComponentsData(componentsAttrs.data);
+      }
+    } else {
+      message.warning(`没有找到模型 ${modelKey} 的构件`);
+      setGettingComponentsData(false);
+    }
   };
 
   const updateIOTData = () => {
@@ -270,7 +298,23 @@ const index = props => {
 
   useEffect(() => {
     initialViewer3D();
+    getComponentsData();
   }, []);
+
+  useEffect(() => {
+    if (selectedRowKeys.length > 0) {
+      let selectedElement = document.querySelector(
+        '#mydiv .ant-table-row-selected',
+      );
+      if (selectedElement) {
+        selectedElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'nearest',
+        });
+      }
+    }
+  }, [selectedRowKeys]);
 
   useEffect(() => {
     if (showAttr) {
@@ -295,6 +339,39 @@ const index = props => {
     },
   ];
 
+  const shuishicolumns = [
+    {
+      title: 'Key',
+      dataIndex: 'key',
+      key: 'key',
+    },
+    {
+      title: '名称',
+      dataIndex: 'name',
+      key: 'name',
+    },
+  ];
+
+  const rowSelection = {
+    type: 'radio',
+    onChange: (selectedRowKeys, selectedRows) => {
+      console.log(
+        `selectedRowKeys: ${selectedRowKeys}`,
+        'selectedRows: ',
+        selectedRows,
+      );
+      setSelectedRowKeys(selectedRowKeys);
+      viewer3D.highlightComponentsByKey(selectedRowKeys);
+      viewer3D.adaptiveSizeByKey(selectedRowKeys);
+    },
+    selectedRowKeys: selectedRowKeys,
+    // getCheckboxProps: (record) => ({
+    //   disabled: record.name === 'Disabled User',
+    //   // Column configuration not to be checked
+    //   name: record.name,
+    // }),
+  };
+
   const designPlan = () => {
     let url = `http://building-bos3d-alpha.rickricks.com:8080/static/index2D.html?dbName=o5fabba65a3c40c4bfeaaa1fabd443f7&modelId=M1605850523549&url=http://building-bos3d-alpha.rickricks.com`;
     window.open(url);
@@ -308,7 +385,7 @@ const index = props => {
   return (
     <>
       <div id="viewport" style={{ height: '100%', width: '100%' }}></div>
-      {showAttr && (
+      {/* {showAttr && (
         <div id="mydiv" className="attr-wrapper">
           <h3 id="mydivheader" style={{ textAlign: 'center', color: '#fff' }}>
             {deviceName} 号低压配电柜运行状态{' '}
@@ -330,7 +407,19 @@ const index = props => {
             </Button>
           </div>
         </div>
-      )}
+      )} */}
+      <div id="mydiv" className="attr-wrapper">
+        <Table
+          dataSource={componentsData}
+          // showHeader={false}
+          rowSelection={rowSelection}
+          loading={gettingComponentsData}
+          size="small"
+          scroll={{ y: '65vh' }}
+          columns={shuishicolumns}
+          pagination={false}
+        />
+      </div>
     </>
   );
 };

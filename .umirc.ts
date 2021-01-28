@@ -24,6 +24,10 @@ export default defineConfig({
           component: './Home',
         },
         {
+          path: '/shuishi',
+          component: './Shuishi',
+        },
+        {
           path: '/login',
           component: './Login',
         },
