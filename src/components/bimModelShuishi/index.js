@@ -4,10 +4,6 @@ import _ from 'lodash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
 import {
-  tagModelRel,
-  getTagDetails,
-  getTagAttributes,
-  getTagTreeNodeKey,
   getUpdatedIOTData,
   getComponentsByModelkey,
   getBatchComponentsAttrs,
@@ -21,7 +17,7 @@ import AttrDetail from '@/components/attrDetail';
 
 let updateIOTDataInterval = null;
 
-const modelKey = 'M1611804498920';
+const modelKey = 'M1611816746024';
 
 function dragElement(elmnt) {
   var pos1 = 0,
@@ -250,8 +246,10 @@ const index = props => {
     if (components && components.data && components.data.length > 0) {
       let componentsAttrs = await getBatchComponentsAttrs(
         components.data,
-        'name,key',
+        'name,key,attribute.绝缘层.隔热层厚度,attribute.约束.顶部高程,attribute.机械.粗糙度',
       );
+      debugger;
+      console.log(componentsAttrs.data);
       setGettingComponentsData(false);
       if (componentsAttrs && componentsAttrs.data) {
         setComponentsData(componentsAttrs.data);
@@ -357,11 +355,100 @@ const index = props => {
       title: 'Key',
       dataIndex: 'key',
       key: 'key',
+      sorter: (a, b) => a.key > b.key,
     },
     {
       title: '名称',
       dataIndex: 'name',
       key: 'name',
+      sorter: (a, b) => a.name.localeCompare(b.name),
+    },
+    {
+      title: '隔热层厚度',
+      dataIndex: ['attribute', '绝缘层', '隔热层厚度'],
+      key: '隔热层厚度',
+      sorter: (a, b) => {
+        if (a['attribute']['绝缘层'] && b['attribute']['绝缘层']) {
+          if (
+            a['attribute']['绝缘层']['隔热层厚度'] &&
+            !b['attribute']['绝缘层']['隔热层厚度']
+          ) {
+            return 1;
+          } else if (
+            !a['attribute']['绝缘层']['隔热层厚度'] &&
+            b['attribute']['绝缘层']['隔热层厚度']
+          ) {
+            return -1;
+          } else if (
+            a['attribute']['绝缘层']['隔热层厚度'] &&
+            b['attribute']['绝缘层']['隔热层厚度']
+          ) {
+            return a['attribute']['绝缘层']['隔热层厚度'].localeCompare(
+              b['attribute']['绝缘层']['隔热层厚度'],
+            );
+          }
+        } else {
+          return 1;
+        }
+      },
+    },
+    {
+      title: '顶部高程',
+      dataIndex: ['attribute', '约束', '顶部高程'],
+      key: '顶部高程',
+      sorter: (a, b) => {
+        if (a['attribute']['约束'] && b['attribute']['约束']) {
+          if (
+            a['attribute']['约束']['顶部高程'] &&
+            !b['attribute']['约束']['顶部高程']
+          ) {
+            return 1;
+          } else if (
+            !a['attribute']['约束']['顶部高程'] &&
+            b['attribute']['约束']['顶部高程']
+          ) {
+            return -1;
+          } else if (
+            a['attribute']['约束']['顶部高程'] &&
+            b['attribute']['约束']['顶部高程']
+          ) {
+            return a['attribute']['约束']['顶部高程'].localeCompare(
+              b['attribute']['约束']['顶部高程'],
+            );
+          }
+        } else {
+          return 1;
+        }
+      },
+    },
+    {
+      title: '粗糙度',
+      dataIndex: ['attribute', '机械', '粗糙度'],
+      key: '粗糙度',
+      sorter: (a, b) => {
+        if (a['attribute']['机械'] && b['attribute']['机械']) {
+          if (
+            a['attribute']['机械']['粗糙度'] &&
+            !b['attribute']['机械']['粗糙度']
+          ) {
+            return 1;
+          } else if (
+            !a['attribute']['机械']['粗糙度'] &&
+            b['attribute']['机械']['粗糙度']
+          ) {
+            return -1;
+          } else if (
+            a['attribute']['机械']['粗糙度'] &&
+            b['attribute']['机械']['粗糙度']
+          ) {
+            return a['attribute']['机械']['粗糙度'].localeCompare(
+              b['attribute']['机械']['粗糙度'],
+            );
+          }
+        } else {
+          return 1;
+        }
+      },
     },
   ];
 
@@ -375,7 +462,7 @@ const index = props => {
       );
       setSelectedRowKeys(selectedRowKeys);
       viewer3D.highlightComponentsByKey(selectedRowKeys);
-      viewer3D.adaptiveSizeByKey(selectedRowKeys);
+      // viewer3D.adaptiveSizeByKey(selectedRowKeys);
     },
     selectedRowKeys: selectedRowKeys,
     // getCheckboxProps: (record) => ({

@@ -3,7 +3,7 @@
     top: 100px;
     right: 20px;
     padding: 10px 20px 20px;
-    width: 400px;
+    width: 600px;
     border: 1px solid #5a88d2;
     background: rgba(255,255,255,.1);
     #mydivheader{
@@ -29,6 +29,9 @@
         }
         tr.ant-table-row-selected > td{
             color: #000;
+        }
+        td.ant-table-column-sort{
+            background: unset;
         }
       }
 }
